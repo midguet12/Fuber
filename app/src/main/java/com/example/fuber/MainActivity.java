@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private final String TAG ="DEMO";
 
+
     ImageView imageView;
     Drawable drawable;
 
@@ -45,18 +46,19 @@ public class MainActivity extends AppCompatActivity {
         Button iniciarSesion = (Button) findViewById(R.id.iniciarSesion);
         TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
         EditText contrasenaEditText = (EditText) findViewById(R.id.contrasenaEditText);
-        //TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
+        EditText usuarioEditText = (EditText) findViewById(R.id.usuarioEditText);
 
 
 
-
-
-        Request request = new Request.Builder()
-                .url("http://192.168.1.76:4000/usuario/4")
-                .build();
 
         iniciarSesion.setOnClickListener( new View.OnClickListener(){
             public void onClick(View v){
+                String usuario = usuarioEditText.getText().toString();
+                String contrasena = contrasenaEditText.getText().toString();
+                Request request = new Request.Builder()
+                        .url("http://192.168.1.76:4000/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
+                        .build();
+
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -66,24 +68,13 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         JSONObject respuesta;
-                        String contrasenaServidor;
                         if(response.isSuccessful()){
                             try {
                                 respuesta = new JSONObject(response.body().string());
-
-                                contrasenaServidor = respuesta.getString("contrasena");
                                 MainActivity.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        String contrasenaIngresada = contrasenaEditText.getText().toString();
-                                        Log.d(TAG,"servidor:" + contrasenaIngresada);
-                                        Log.d(TAG,"servidor:" + contrasenaServidor);
 
-                                        if(contrasenaIngresada.equals(contrasenaServidor)){
-                                            //noTienesCuenta.setText("Ingresado");
-                                        }else{
-                                            //noTienesCuenta.setText("Contraseña Incorrecta");
-                                        }
                                     }
                                 });
                             }catch (Exception exception){
@@ -95,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        noTienesCuenta.setOnClickListener(new View.OnClickListener() {
+        /*noTienesCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });
+        });*/
 
 
 

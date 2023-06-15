@@ -39,7 +39,7 @@
             android:padding="30dp"
             android:ems="10"
             android:inputType="text"
-            android:hint="Correo o telefono"
+            android:hint="Correo"
             android:text="" />
 
 
