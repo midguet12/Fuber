@@ -1,14 +1,111 @@
 package com.example.fuber;
 
+import org.json.*;
+
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttp;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private final OkHttpClient client = new OkHttpClient();
+    private final String TAG ="DEMO";
+
+    ImageView imageView;
+    Drawable drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imageView = findViewById(R.id.logo);
+        drawable = getResources().getDrawable(R.drawable.fuber);
+        imageView.setImageDrawable(drawable);
+
+        Button iniciarSesion = (Button) findViewById(R.id.iniciarSesion);
+        TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
+        EditText contrasenaEditText = (EditText) findViewById(R.id.contrasenaEditText);
+        //TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
+
+
+
+
+
+        Request request = new Request.Builder()
+                .url("http://192.168.1.76:4000/usuario/4")
+                .build();
+
+        iniciarSesion.setOnClickListener( new View.OnClickListener(){
+            public void onClick(View v){
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        JSONObject respuesta;
+                        String contrasenaServidor;
+                        if(response.isSuccessful()){
+                            try {
+                                respuesta = new JSONObject(response.body().string());
+
+                                contrasenaServidor = respuesta.getString("contrasena");
+                                MainActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        String contrasenaIngresada = contrasenaEditText.getText().toString();
+                                        Log.d(TAG,"servidor:" + contrasenaIngresada);
+                                        Log.d(TAG,"servidor:" + contrasenaServidor);
+
+                                        if(contrasenaIngresada.equals(contrasenaServidor)){
+                                            //noTienesCuenta.setText("Ingresado");
+                                        }else{
+                                            //noTienesCuenta.setText("Contraseña Incorrecta");
+                                        }
+                                    }
+                                });
+                            }catch (Exception exception){
+                                exception.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        noTienesCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
+
+
     }
+
 }
