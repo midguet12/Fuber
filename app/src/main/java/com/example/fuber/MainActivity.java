@@ -6,14 +6,20 @@ import org.json.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.fuber.tiendas.Tiendas;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
         EditText contrasenaEditText = (EditText) findViewById(R.id.contrasenaEditText);
         EditText usuarioEditText = (EditText) findViewById(R.id.usuarioEditText);
+        //String token = "";
+
 
 
 
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 String usuario = usuarioEditText.getText().toString();
                 String contrasena = contrasenaEditText.getText().toString();
                 Request request = new Request.Builder()
-                        .url("http://192.168.1.76:4000/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
+                        .url("http://192.168.1.76:4000/usuario/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
                         .build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -64,13 +72,25 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         JSONObject respuesta;
+
                         if(response.isSuccessful()){
                             try {
                                 respuesta = new JSONObject(response.body().string());
                                 MainActivity.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        try {
 
+                                            String token = respuesta.getString("token");
+                                            /*if (token.equals("no autenticado")){
+
+
+                                            }*/
+                                            openResultActivity(token);
+
+                                        } catch (Exception e){
+                                            e.printStackTrace();
+                                        }
                                     }
                                 });
                             }catch (Exception exception){
@@ -89,9 +109,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
+    }
+    private void openResultActivity(String token) {
+        Intent intent = new Intent(this, Tiendas.class);
+        intent.putExtra(Tiendas.TOKEN, token);
+        startActivity(intent);
 
     }
 
