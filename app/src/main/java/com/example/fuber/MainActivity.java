@@ -14,14 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttp;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -86,12 +82,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*noTienesCuenta.setOnClickListener(new View.OnClickListener() {
+        noTienesCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d(TAG,"Funciona");
             }
-        });*/
+        });
 
 
 
