@@ -3,12 +3,10 @@ package com.example.fuber.tiendas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.example.fuber.R;
 
-public class Tiendas extends AppCompatActivity {
+public class TiendasView extends AppCompatActivity {
 
     public static final String TOKEN = "token";
     private final String TAG ="DEMO";

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fuber.tiendas.Tiendas;
+import com.example.fuber.tiendas.TiendasView;
 
 import java.io.IOException;
 
@@ -82,11 +81,12 @@ public class MainActivity extends AppCompatActivity {
                                         try {
 
                                             String token = respuesta.getString("token");
-                                            /*if (token.equals("no autenticado")){
+                                            if (token.equals("no")){
+                                                Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                openResultActivity(token);
+                                            }
 
-
-                                            }*/
-                                            openResultActivity(token);
 
                                         } catch (Exception e){
                                             e.printStackTrace();
@@ -111,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void openResultActivity(String token) {
-        Intent intent = new Intent(this, Tiendas.class);
-        intent.putExtra(Tiendas.TOKEN, token);
+        Intent intent = new Intent(this, TiendasView.class);
+        intent.putExtra(TiendasView.TOKEN, token);
         startActivity(intent);
 
     }
