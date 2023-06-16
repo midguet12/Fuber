@@ -15,14 +15,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.fuber.tiendas.TiendasView;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.OkHttp;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         TextView noTienesCuenta = (TextView) findViewById(R.id.noTienesCuentaTextView);
         EditText contrasenaEditText = (EditText) findViewById(R.id.contrasenaEditText);
         EditText usuarioEditText = (EditText) findViewById(R.id.usuarioEditText);
+        //String token = "";
+
 
 
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 String usuario = usuarioEditText.getText().toString();
                 String contrasena = contrasenaEditText.getText().toString();
                 Request request = new Request.Builder()
-                        .url("http://192.168.1.76:4000/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
+                        .url("http://themaisonbleue.com:4000/usuario/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
                         .build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -69,13 +71,26 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         JSONObject respuesta;
+
                         if(response.isSuccessful()){
                             try {
                                 respuesta = new JSONObject(response.body().string());
                                 MainActivity.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        try {
 
+                                            String token = respuesta.getString("token");
+                                            if (token.equals("no")){
+                                                Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                openResultActivity(token);
+                                            }
+
+
+                                        } catch (Exception e){
+                                            e.printStackTrace();
+                                        }
                                     }
                                 });
                             }catch (Exception exception){
@@ -93,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 cambiarVentanaRegistro();
             }
         });
+
+    private void openResultActivity(String token) {
+        Intent intent = new Intent(this, TiendasView.class);
+        intent.putExtra(TiendasView.TOKEN, token);
+        startActivity(intent);
 
     }
     private void cambiarVentanaRegistro(){
