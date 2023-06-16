@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.fuber.R;
 import com.example.fuber.databinding.ActivityMainBinding;
 import com.example.fuber.databinding.ActivityTiendasBinding;
+import com.example.fuber.productos.ProductosView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +42,6 @@ public class TiendasView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityTiendasBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -54,8 +55,7 @@ public class TiendasView extends AppCompatActivity {
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast funciona = Toast.makeText(getApplicationContext(), "Funciona", Toast.LENGTH_SHORT);
-                funciona.show();
+                openProductosActivity(extras.getString(TOKEN), 3);
 
             }
         });
@@ -64,7 +64,7 @@ public class TiendasView extends AppCompatActivity {
 
 
         Request request = new Request.Builder()
-                .url("http://192.168.1.76:4000/tiendas")
+                .url("http://themaisonbleue.com:4000/tiendas")
                 .addHeader("Authorization", "Bearer " + extras.getString(TOKEN))
                 .get()
                 .build();
@@ -110,5 +110,12 @@ public class TiendasView extends AppCompatActivity {
 
 
 
+    }
+
+    private void openProductosActivity(String token, int idTienda){
+        Intent intent = new Intent(this, ProductosView.class);
+        intent.putExtra(ProductosView.TOKEN, token);
+        intent.putExtra(ProductosView.ID_TIENDA,idTienda);
+        startActivity(intent);
     }
 }

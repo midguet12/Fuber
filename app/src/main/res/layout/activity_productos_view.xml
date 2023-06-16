@@ -48,5 +48,5 @@
 
             android:text="Perfil" />
     </com.google.android.material.navigation.NavigationView>
-
+    </LinearLayout>
 </layout>
