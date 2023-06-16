@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".ConfirmacionCelular">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_confirmacionCelular_titulo"
+            android:textSize="25sp"
+            android:layout_marginBottom="90sp"/>
+
+        <TextView
+            android:id="@+id/textView_avisoMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_mensaje_numero_aviso"
+            android:layout_marginHorizontal="30sp"
+            android:gravity="center"
+            android:layout_marginBottom="30sp"/>
+
+        <EditText
+            android:id="@+id/NumeroConfirmacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/ayuda_numero_confirmacion"
+            android:layout_marginHorizontal="50sp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginBottom="15sp"/>
+
+        <Button
+            android:id="@+id/buttonConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_confirmar"
+            android:layout_marginHorizontal="90sp"
+            android:layout_marginBottom="20sp"/>
+
+        <TextView
+            android:id="@+id/probarOtroCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_mensaje_no_llego"
+            android:textColor="@color/blue"
+            android:clickable="true"
+            android:gravity="center"/>
+    </LinearLayout>
+</layout>

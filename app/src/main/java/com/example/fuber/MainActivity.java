@@ -6,6 +6,7 @@ import org.json.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -86,17 +87,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*noTienesCuenta.setOnClickListener(new View.OnClickListener() {
+        noTienesCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                cambiarVentanaRegistro();
             }
-        });*/
+        });
 
-
-
-
-
+    }
+    private void cambiarVentanaRegistro(){
+        Intent intent = new Intent(this, RegistroUsuario.class);
+        startActivity(intent);
     }
 
 }

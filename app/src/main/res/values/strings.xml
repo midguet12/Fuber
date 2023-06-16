@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Fuber</string>
+    <string name="Text_Registro">Registrate</string>
+    <string name="ayuda_nombre_completo">Nombre completo</string>
+    <string name="ayuda_correo">Correo</string>
+    <string name="ayuda_celular">Celular</string>
+    <string name="ayuda_contrasena">contrasena</string>
+    <string name="text_registrar">Registrar</string>
+    <string name="text_mensaje_numero_aviso">Hemos enviado un numero de confirmación al número ##########. \nPor favor ingrésalo para continuar</string>
+    <string name="text_mensaje_correo_aviso">Hemos enviado un numero de confirmación al correo ##########. \nPor favor ingrésalo para continuar</string>
+    <string name="text_confirmacionCelular_titulo">Confirmación celular</string>
+    <string name="ayuda_numero_confirmacion">Número de confirmación</string>
+    <string name="text_confirmar">Confirmar</string>
+    <string name="text_mensaje_no_llego">¿No te llegó un mensaje? \n<u>Probar con correo electronico</u></string>
+    <string name="text_cuenta_confirmada">Cuenta confirmada</string>
+    <string name="text_cuenta_confirmada_2">Tu cuenta ha sido confirmada</string>
+    <string name="text_ir_menu">Ir al menú principal</string>
+    <string name="llenar_campos">Debes llenar todos los campos</string>
 </resources>
