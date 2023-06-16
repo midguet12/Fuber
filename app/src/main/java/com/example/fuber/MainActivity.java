@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 String usuario = usuarioEditText.getText().toString();
                 String contrasena = contrasenaEditText.getText().toString();
                 Request request = new Request.Builder()
-                        .url("http://192.168.1.76:4000/usuario/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
+                        .url("http://themaisonbleue.com:4000/usuario/iniciarsesion/" + usuario.toString() + "&" + contrasena.toString())
                         .build();
 
                 client.newCall(request).enqueue(new Callback() {

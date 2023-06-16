@@ -41,7 +41,7 @@
             android:inputType="text"
             android:textSize="20dp"
             android:hint="Correo"
-            android:text="" />
+            android:text="midguet12@hotmail.com" />
         <EditText
             android:id="@+id/contrasenaEditText"
             android:layout_width="match_parent"
@@ -50,7 +50,9 @@
             android:textSize="20dp"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="Magt22081998"
+            />
 
         <Button
             android:id="@+id/iniciarSesion"
