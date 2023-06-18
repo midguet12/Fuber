@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fuber.nuevacuenta.RegistroUsuario;
 import com.example.fuber.tiendas.TiendasView;
 
 import java.io.IOException;
@@ -106,13 +107,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Log.d(TAG,"Funciona");
-
+                cambiarVentanaRegistro();
             }
         });
 
     }
 
-    private void
+    private void cambiarVentanaRegistro(){
+        Intent intent = new Intent(this, RegistroUsuario.class);
+        startActivity(intent);
+    }
     private void openResultActivity(String token) {
         Intent intent = new Intent(this, TiendasView.class);
         intent.putExtra(TiendasView.TOKEN, token);

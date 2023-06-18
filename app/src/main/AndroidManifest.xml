@@ -16,13 +16,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".nuevacuenta.confirmacion.CuentaConfirmada"
+            android:exported="false" />
+        <activity
+            android:name=".nuevacuenta.confirmacion.ConfirmacionCelular"
+            android:exported="false" />
+        <activity
+            android:name=".nuevacuenta.RegistroUsuario"
+            android:exported="false" />
+        <activity
             android:name=".productos.ProductosView"
             android:exported="false" />
         <activity
             android:name=".tiendas.TiendasView"
-            android:exported="false" />
-        <activity
-            android:name=".nuevacuenta.CuentaNueva"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
