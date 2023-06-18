@@ -62,7 +62,7 @@ public class ProductosView extends AppCompatActivity {
         });
 
         Request request = new Request.Builder()
-                .url("http://192.168.1.76:4000/productos/3")
+                .url("http://themaisonbleue.com:4000/productos/3")
                 .addHeader("Authorization", "Bearer " + extras.getString(TOKEN))
                 .get()
                 .build();

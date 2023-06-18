@@ -105,11 +105,14 @@ public class MainActivity extends AppCompatActivity {
         noTienesCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG,"Funciona");
+                //Log.d(TAG,"Funciona");
+
             }
         });
 
     }
+
+    private void
     private void openResultActivity(String token) {
         Intent intent = new Intent(this, TiendasView.class);
         intent.putExtra(TiendasView.TOKEN, token);

@@ -35,7 +35,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull Adapter.ViewHolder holder, int position) {
         holder.nombreProducto.setText(productos.get(position).getTitulo());
         holder.descripcionProducto.setText(productos.get(position).getDescripcion());
-        Picasso.get().load("http://themaisonbleue.com:4080/producto/" + String.valueOf(productos.get(position).idTienda) + ".jpg").into(holder.fotoProducto);
+        Picasso.get().load("http://themaisonbleue.com:4080/producto/" + String.valueOf(productos.get(position).idProducto) + ".jpg").into(holder.fotoProducto);
+        //Picasso.get().load("http://themaisonbleue.com:4080/producto/"+ String.valueOf()".jpg").into(holder.fotoProducto);
     }
 
     @Override
