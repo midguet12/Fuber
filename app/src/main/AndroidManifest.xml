@@ -16,6 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".perfil.saldo.RecargarSaldoView"
+            android:exported="false" />
+        <activity
+            android:name=".perfil.PerfilView"
+            android:exported="false" />
+        <activity
             android:name=".nuevacuenta.confirmacion.CuentaConfirmada"
             android:exported="false" />
         <activity

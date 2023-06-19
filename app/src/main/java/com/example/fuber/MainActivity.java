@@ -82,10 +82,12 @@ public class MainActivity extends AppCompatActivity {
                                         try {
 
                                             String token = respuesta.getString("token");
+                                            JSONObject usuario = respuesta.getJSONObject("usuario");
+                                            int idUsuario = usuario.getInt("idUsuario");
                                             if (token.equals("no")){
                                                 Toast.makeText(MainActivity.this, "Contraseña Incorrecta", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                openResultActivity(token);
+                                                openResultActivity(token, idUsuario);
                                             }
 
 
@@ -117,9 +119,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegistroUsuario.class);
         startActivity(intent);
     }
-    private void openResultActivity(String token) {
+    private void openResultActivity(String token, int idUsuario) {
         Intent intent = new Intent(this, TiendasView.class);
         intent.putExtra(TiendasView.TOKEN, token);
+        intent.putExtra(TiendasView.ID_USUARIO, idUsuario);
         startActivity(intent);
 
     }

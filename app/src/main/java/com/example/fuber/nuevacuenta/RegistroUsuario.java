@@ -54,6 +54,8 @@ public class RegistroUsuario extends AppCompatActivity {
 
         Button btnRegistrar = (Button) findViewById(R.id.buttonRegistrar);
 
+
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,7 @@ public class RegistroUsuario extends AppCompatActivity {
                             .url("http://themaisonbleue.com:4000/usuariootp/+52"+celular.toString())
                             .post(bodyJson)
                             .build();
+
 
                     client.newCall(request).enqueue(new Callback() {
                         @Override

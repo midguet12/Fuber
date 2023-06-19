@@ -34,6 +34,7 @@ public class ProductosView extends AppCompatActivity {
     public static final String TOKEN ="token";
     public static final String TAG = "TAG";
     public static final String ID_TIENDA = "idTienda";
+
     private final OkHttpClient client = new OkHttpClient();
     RecyclerView recyclerView;
     List<Producto> productos;
@@ -62,7 +63,7 @@ public class ProductosView extends AppCompatActivity {
         });
 
         Request request = new Request.Builder()
-                .url("http://themaisonbleue.com:4000/productos/3")
+                .url("http://themaisonbleue.com:4000/productos/"+ extras.get(ID_TIENDA))
                 .addHeader("Authorization", "Bearer " + extras.getString(TOKEN))
                 .get()
                 .build();

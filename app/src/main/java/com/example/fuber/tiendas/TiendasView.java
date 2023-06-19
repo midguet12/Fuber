@@ -9,15 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.fuber.R;
 import com.example.fuber.databinding.ActivityMainBinding;
 import com.example.fuber.databinding.ActivityTiendasBinding;
+import com.example.fuber.perfil.PerfilView;
 import com.example.fuber.productos.ProductosView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -30,10 +29,11 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TiendasView extends AppCompatActivity {
+public class TiendasView extends AppCompatActivity implements RecyclerViewInterface{
 
     public static final String TOKEN = "token";
     public static final String TAG = "TAG";
+    public static final String ID_USUARIO = "";
     private final OkHttpClient client = new OkHttpClient();
     RecyclerView recyclerView;
     List<Tienda> tiendas;
@@ -55,7 +55,7 @@ public class TiendasView extends AppCompatActivity {
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openProductosActivity(extras.getString(TOKEN), 3);
+                openPerfilActivity(extras.getString(TOKEN), extras.getInt(ID_USUARIO));
 
             }
         });
@@ -96,8 +96,7 @@ public class TiendasView extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 }
-                                //recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                                adapter = new Adapter(getApplicationContext(), tiendas);
+                                adapter = new Adapter(getApplicationContext(), tiendas, TiendasView.this::onItemClick, extras.getString(TOKEN));
                                 recyclerView.setAdapter(adapter);
                             }
                         });
@@ -112,10 +111,22 @@ public class TiendasView extends AppCompatActivity {
 
     }
 
-    private void openProductosActivity(String token, int idTienda){
+    private void openPerfilActivity(String token, int idUsuario){
+        Intent intent = new Intent(this, PerfilView.class);
+        intent.putExtra(PerfilView.TOKEN, token);
+        intent.putExtra(PerfilView.ID_Usuario,idUsuario);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(String token, int position) {
+
         Intent intent = new Intent(this, ProductosView.class);
         intent.putExtra(ProductosView.TOKEN, token);
-        intent.putExtra(ProductosView.ID_TIENDA,idTienda);
+        intent.putExtra(ProductosView.ID_TIENDA, tiendas.get(position).idTienda);
+
         startActivity(intent);
+
+
     }
 }
