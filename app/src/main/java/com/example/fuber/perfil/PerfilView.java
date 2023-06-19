@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fuber.R;
 import com.example.fuber.productos.Producto;
@@ -49,7 +50,7 @@ public class PerfilView extends AppCompatActivity {
         recargarSaldo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(PerfilView.this, "En construccion", Toast.LENGTH_SHORT).show();
             }
         });
 

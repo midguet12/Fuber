@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.fuber.R;
 import com.example.fuber.databinding.ActivityProductosViewBinding;
 import com.example.fuber.databinding.ActivityTiendasBinding;
+import com.example.fuber.perfil.PerfilView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,8 +58,8 @@ public class ProductosView extends AppCompatActivity {
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast funciona = Toast.makeText(getApplicationContext(), "Funciona", Toast.LENGTH_SHORT);
-                funciona.show();
+                //openPerfilActivity(extras.getString(TOKEN), extras.getInt(ID_USUARIO));
+
 
             }
         });
@@ -111,5 +113,12 @@ public class ProductosView extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void openPerfilActivity(String token, int idUsuario) {
+        Intent intent = new Intent(this, PerfilView.class);
+        intent.putExtra(PerfilView.TOKEN, token);
+        intent.putExtra(PerfilView.ID_Usuario,idUsuario);
+        startActivity(intent);
     }
 }
